@@ -50,7 +50,7 @@
         z-index: 0;
         pointer-events: none;
     }
-    
+
     .mdp-clock-center {
         min-height: 0px;
         height: 6px;
@@ -140,6 +140,10 @@ mdp-time-picker {
     .mdp-clock-deg@{i} {
         top: ((1 + sin(@degree * 1deg)) * 100%) / 2;
         left: ((1 + cos(@degree * 1deg)) * 100%) / 2;
-	}
+    }
+    .mdp-clock-deg-inside@{i} {
+        top: ((1 + sin(@degree * 1deg)) * 100%) / 3 + 16.6%;
+        left: ((1 + cos(@degree * 1deg)) * 100%) / 3 + 16.6%;
+    }
 	.generate-degree-classes(@step, @i+@step);    // next iteration
 }

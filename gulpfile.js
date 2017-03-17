@@ -9,7 +9,10 @@ var gulp = require('gulp'),
     wrap = require('gulp-wrap'),
     concat = require('gulp-concat'),
     autoprefixer = require('gulp-autoprefixer'),
-    path = require('path');
+    path = require('path'),
+    wiredep = require('gulp-wiredep'),
+    watch = require('gulp-watch'),
+    browserSync = require('browser-sync').create();
 
 var outputFolder = 'dist/';
 var moduleName = 'mdPickers';
@@ -25,7 +28,7 @@ gulp.task('assets', function() {
         .pipe(gulp.dest(outputFolder));
 });
 
-gulp.task('build-app', function() {  
+gulp.task('build-app', function() {
     return gulp.src(['src/mdPickers.js', 'src/core/**/*.js', 'src/components/**/*.js'])
         .pipe(concat('mdPickers.js'))
         .pipe(wrap('(function() {\n"use strict";\n<%= contents %>\n})();'))
@@ -37,8 +40,20 @@ gulp.task('build-app', function() {
         .pipe(gulp.dest(outputFolder));
 });
 
-gulp.task('watch', function() {
-    gulp.watch('src/**/*', ['assets', 'build-app']);
+gulp.task('default', ['assets', 'build-app']);
+
+gulp.task('bower', function () {
+    gulp.src('./example/index.html')
+        .pipe(wiredep())
+        .pipe(gulp.dest('./example/'));
 });
 
-gulp.task('default', ['assets', 'build-app']);
+gulp.task('serve', function() {
+
+    browserSync.init({
+        server: "./",
+        index: "./example/index.html"
+    });
+
+    gulp.watch(["src/**/*","example/**/*"], ['default', browserSync.reload]);
+});

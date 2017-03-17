@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="mdPickers">
+<head>
+  <meta charset="UTF-8">
+  <title>mdp example</title>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css" />
+  <!-- endbower -->
+  <link rel="stylesheet" href="../dist/mdPickers.css" />
+</head>
+<body>
+<div layout="row" layout-align="space-around center" flex>
+  <input placeholder="24 Hours Autoswitch" type="text" ng-model="placeholder" mdp-auto-switch="true" mdp-time-picker>
+  <input placeholder="12 Hours" type="text" ng-model="placeholder2" mdp-ampm="true" mdp-time-picker>
+  <input placeholder="Date picker" type="text" ng-model="placeholder3" mdp-date-picker>
+</div>
+
+<!-- bower:js -->
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../bower_components/angular-aria/angular-aria.js"></script>
+<script src="../bower_components/angular-messages/angular-messages.js"></script>
+<script src="../bower_components/angular-material/angular-material.js"></script>
+<script src="../bower_components/moment/moment.js"></script>
+<!-- endbower -->
+<script src="../dist/mdPickers.js"></script>
+</body>
+</html>
