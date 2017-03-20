@@ -913,7 +913,7 @@ module.directive("mdpTimePicker", ["$mdpTimePicker", "$timeout", function($mdpTi
             };
             
             ngModel.$validators.required = function(modelValue, viewValue) {
-                return angular.isUndefined(attrs.required) || !ngModel.$isEmpty(modelValue) || !ngModel.$isEmpty(viewValue);
+              return angular.isUndefined(attrs.required) || !ngModel.$isEmpty(modelValue) || !ngModel.$isEmpty(viewValue);
             };
             
             ngModel.$parsers.unshift(function(value) {
@@ -990,7 +990,16 @@ module.directive("mdpTimePicker", ["$mdpTimePicker", "$timeout", function($mdpTi
             "ampm": "=?mdpAmpm"
         },
         link: function(scope, element, attrs, ngModel, $transclude) {
-            scope.format = scope.format || "HH:mm";
+            scope.format = scope.timeFormat || "HH:mm";
+
+            ngModel.$validators.format = function(modelValue, viewValue) {
+                return !viewValue || angular.isDate(viewValue) || moment(viewValue, scope.format, true).isValid();
+            };
+
+            ngModel.$validators.required = function(modelValue, viewValue) {
+                return angular.isUndefined(attrs.required) || !ngModel.$isEmpty(modelValue) || !ngModel.$isEmpty(viewValue);
+            };
+
             function showPicker(ev) {
                 $mdpTimePicker(ngModel.$modelValue, {
                     targetEvent: ev,

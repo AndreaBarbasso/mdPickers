@@ -9,11 +9,16 @@
   <link rel="stylesheet" href="../dist/mdPickers.css" />
 </head>
 <body>
-<div layout="row" layout-align="space-around center" flex>
-  <input placeholder="24 Hours Autoswitch" type="text" ng-model="placeholder" mdp-auto-switch="true" mdp-time-picker>
-  <input placeholder="12 Hours" type="text" ng-model="placeholder2" mdp-ampm="true" mdp-time-picker>
-  <input placeholder="Date picker" type="text" ng-model="placeholder3" mdp-date-picker>
-</div>
+<form name="dateTimePicker">
+  <div layout="row" layout-align="space-around center" flex>
+    <input name="clock24" placeholder="24 Hours Autoswitch" type="text" ng-model="dateTimePicker.placeholder"
+           mdp-auto-switch="true" mdp-time-picker required>
+    <input name="clock12" placeholder="12 Hours" type="text" ng-model="dateTimePicker.placeholder2" mdp-ampm="true"
+           mdp-time-picker>
+    <input name="calendar" placeholder="Date picker" type="text" ng-model="dateTimePicker.placeholder3" mdp-date-picker
+           required>
+  </div>
+</form>
 
 <!-- bower:js -->
 <script src="../bower_components/angular/angular.js"></script>
